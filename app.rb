@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'active_record'
 require 'sass'
+require 'aws/s3'
 
 load 'config/config.rb'
 load 'models.rb'
@@ -48,7 +49,6 @@ module Voter
       end
       STDERR.puts "Uploading file, original name #{name.inspect}"
       while blk = tmpfile.read(65536)
-        # here you would write it to its final location
         STDERR.puts blk.inspect
       end
       "Upload complete"
