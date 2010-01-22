@@ -17,6 +17,7 @@ namespace 'db' do
       t.string  :title
       t.text    :description
       t.integer :vote_total
+      t.string  :url
       
       t.timestamps
     end
