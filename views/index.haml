@@ -1,15 +1,15 @@
-%a{:href => "/upload"}= "Upload"
 %div#images
   - @images.each do |image|
     %div.image
       .vote
-        %ul
-          %li= "up"
-          %li= "down"
-        %h3.title
-          %a{:href => "./"}= image.title
+        %ul{:id => image.id, :class => "vote"}
+          %li.up= "up"
+          %li.down= "down"
         .description
-        = image.description
-      %img{:src => "#{image.url}", :width => 400, :height => 300}
+          %h3.title
+            %a{:href => "./"}= image.title
+          
+          %p= image.description
+      %img{:src => "#{image.url}", :height => 276}
       
           

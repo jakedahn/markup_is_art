@@ -25,11 +25,13 @@ module Voter
     get '/' do
       @title = "Voter | Upload your images for critique"
       @images = Image.all(:limit => 5)
+      
       haml :index
     end
     
     get '/top' do
-      haml :images
+      @images = Image.all(:limit => 5).sort { |a,b| b.vote_total <=> a.vote_total }
+      haml :index
     end
 
     get '/images' do
@@ -46,7 +48,11 @@ module Voter
         :value    => 1,
         :image_id => params[:id]
       )
-      update_votes_total(params[:id])
+      if update_votes_total(params[:id])
+        return "true"
+      else
+        return "false"
+      end
     end
 
     post '/vote/:id/down' do
@@ -54,7 +60,11 @@ module Voter
         :value    => -1,
         :image_id => params[:id]
       )
-      update_votes_total(params[:id])
+      if update_votes_total(params[:id])
+        return "true"
+      else
+        return "false"
+      end
     end
 
     post '/upload' do
@@ -71,7 +81,6 @@ module Voter
         :url => "http://s3.amazonaws.com/#{@bucket}/#{@stored_name}"
       )
       AWS::S3::S3Object.store(@stored_name, open(@file[:tempfile]), @bucket)
-
     end    
     
   end
