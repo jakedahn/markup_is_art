@@ -9,11 +9,12 @@ load 'methods.rb'
 
 module Voter
   class App < Sinatra::Default
+    
     set :sessions, true
     set :run, false
 
     before do
-      @flash = get_flash.nil? ? "" : "<span class='flash'>#{get_flash}</span>"  
+      @flash = get_flash.nil? ? "" : "<span class='flash'>#{get_flash}</span>"
     end
 
     get '/style.css' do
@@ -23,7 +24,7 @@ module Voter
 
     get '/' do
       @title = "Voter | Upload your images for critique"
-      @images = Image.all
+      @images = Image.all(:limit => 5)
       haml :index
     end
     
@@ -40,20 +41,38 @@ module Voter
       haml :upload
     end
     
-    post '/upload' do
-      unless params[:file] &&
-             (tmpfile = params[:file][:tempfile]) &&
-             (name = params[:file][:filename])
-        @error = "No file selected"
-        return haml(:upload)
-      end
-      STDERR.puts "Uploading file, original name #{name.inspect}"
-      while blk = tmpfile.read(65536)
-        STDERR.puts blk.inspect
-      end
-      "Upload complete"
+    post '/vote/:id/up' do
+      Vote.create(
+        :value    => 1,
+        :image_id => params[:id]
+      )
+      update_votes_total(params[:id])
     end
-    
+
+    post '/vote/:id/down' do
+      Vote.create(
+        :value    => -1,
+        :image_id => params[:id]
+      )
+      update_votes_total(params[:id])
+    end
+
+    post '/upload' do
+      @bucket = "voter"
+      @file = params[:file]
+      @filename = @file[:filename]
+      @filetype = File.extname(@filename)
+      @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
+      
+      Image.create(
+        :title => params[:title],
+        :description => params[:title],
+        :vote_total => 0,
+        :url => "http://s3.amazonaws.com/#{@bucket}/#{@stored_name}"
+      )
+      AWS::S3::S3Object.store(@stored_name, open(@file[:tempfile]), @bucket)
+
+    end    
     
   end
 end

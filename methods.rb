@@ -42,3 +42,7 @@ def link_to url_fragment, mode=:path_only
   "#{base}#{url_fragment}"
 end
 
+def update_votes_total(id)
+  @total = Image.find(id).votes.sum('value')
+  Image.update(id, {"vote_total" => @total})
+end
