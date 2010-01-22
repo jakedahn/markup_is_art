@@ -1,7 +1,7 @@
-class ItemName < ActiveRecord::Base
-  has_many :things  
+class Image < ActiveRecord::Base
+  has_many :votes  
 end
 
-class Thing < ActiveRecord::Base
-  belongs_to :itemName
+class Vote < ActiveRecord::Base
+  belongs_to :image
 end

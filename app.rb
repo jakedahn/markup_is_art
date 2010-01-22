@@ -1,13 +1,12 @@
-require 'rubygems'
 require 'sinatra'
-require 'activerecord'
+require 'active_record'
 require 'sass'
 
 load 'config/config.rb'
 load 'models.rb'
 load 'methods.rb'
 
-module AppName
+module Voter
   class App < Sinatra::Default
     set :sessions, true
     set :run, false

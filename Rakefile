@@ -4,16 +4,19 @@ require 'sinatra'
 namespace 'db' do
   desc "Create db schema"
   task :create do        
-    require 'activerecord'
+    require 'active_record'
     require 'config/config.rb'
   
-    ActiveRecord::Migration.create_table :itemName do |t|
-      t.string :itemName
+    ActiveRecord::Migration.create_table :votes do |t|
+      t.string  :value
+      t.integer :image_id
       
       t.timestamps
     end
-    ActiveRecord::Migration.create_table :things do |t|
-      t.string :thingName
+    ActiveRecord::Migration.create_table :images do |t|
+      t.string  :title
+      t.text    :description
+      t.integer :vote_total
       
       t.timestamps
     end

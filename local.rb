@@ -1,3 +1,3 @@
 require 'app'
  
-AppName::App.run!
+Voter::App.run!
