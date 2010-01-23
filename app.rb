@@ -2,6 +2,8 @@ require 'sinatra'
 require 'active_record'
 require 'sass'
 require 'aws/s3'
+require 'rcomposite'
+require 'restclient'
 
 load 'config/config.rb'
 load 'models.rb'
@@ -24,7 +26,7 @@ module Voter
 
     get '/' do
       @title = "Voter | Upload your images for critique"
-      @images = Image.all(:limit => 5)
+      @images = Image.all()
       
       haml :index
     end
@@ -66,21 +68,32 @@ module Voter
         return "false"
       end
     end
-
+    
+    post '/mustachify' do
+      @image = mustachify(params[:file])
+      
+      RestClient.post 'http://looce.com:4568/upload', :file => File.new(@image)
+    end
+    
     post '/upload' do
+      
       @bucket = "voter"
       @file = params[:file]
       @filename = @file[:filename]
       @filetype = File.extname(@filename)
       @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
       
-      Image.create(
+      
+      
+      puts  Image.new(
         :title => params[:title],
         :description => params[:title],
         :vote_total => 0,
         :url => "http://s3.amazonaws.com/#{@bucket}/#{@stored_name}"
-      )
-      AWS::S3::S3Object.store(@stored_name, open(@file[:tempfile]), @bucket)
+      ).save
+      AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket)
+      
+      redirect "/"
     end    
     
   end

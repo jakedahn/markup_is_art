@@ -47,3 +47,25 @@ def update_votes_total(id)
   Image.update(id, {"vote_total" => @total})
   return true
 end
+
+def mustachify(img)
+
+  @file = img
+  @filename = img[:filename]
+  @filetype = File.extname(@filename)
+  @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
+  
+  @manipulated = RComposite::Canvas.new(640, 480) do
+    layer :file => 'public/images/mustaches/1.png' do
+      offset 176, 171
+    end
+    layer :file => open(img[:tempfile]) do
+      image.resize!(640, 480)
+    end
+  end
+  @manipulated.save_as "public/images/tmp/"+@stored_name
+  
+  return "public/images/tmp/"+@stored_name
+  
+end
+
