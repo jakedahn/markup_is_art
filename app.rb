@@ -75,7 +75,7 @@ module Voter
           :url => "http://#{@bucket}/#{@stored_name}"
         ).save
         
-        AWS::S3::S3Object.store(@stored_name, File.new("tmp/"+@stored_name), @bucket, :access => :public_read)
+        AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket, :access => :public_read)
       
         redirect "/"
       end
