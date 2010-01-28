@@ -3,7 +3,7 @@ require 'active_record'
 require 'haml'
 require 'sass'
 require 'aws/s3'
-require 'rcomposite'
+require 'lib/rcomposite'
 require 'restclient'
 
 load 'config/config.rb'
