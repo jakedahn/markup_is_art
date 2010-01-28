@@ -1,14 +1,11 @@
 %div#images
   - @images.each do |image|
     %div.image
-      .vote
-        %ul{:id => image.id, :class => "vote"}
-          %li.up= "up"
-          %li.down= "down"
+      .descriptionWrapper
         .description
           %h3.title
             %a{:href => "./"}= image.title
-          
+        
           %p= image.description
       %img{:src => "#{image.url}", :height => 276}
       

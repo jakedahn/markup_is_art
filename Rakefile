@@ -25,18 +25,3 @@ namespace 'db' do
 
   end
 end
-# 
-# (1..10).each do |i|
-#   Image.create(
-#     :title        => "Test #{i}",
-#     :description  => "This image is pretty baddass, I dont think ill ever see something as cool.",
-#     :url          => "http://s3.amazonaws.com/voter/testimg.png"
-#   )
-# end
-
-# (1..10).each do |i|
-#   Vote.create(
-#     :value    => 1,
-#     :image_id => 1
-#   )
-# end

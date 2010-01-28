@@ -3,11 +3,11 @@
     %fieldset
       %label{:for => "tile"}= "Please select a file"
       %input{:name => "file", :type => "file"}
+      
       %label{:for => "title"}= "Please enter a title"
-      
       %input{:name => "title", :type => "text"}
-      %label{:for => "title"}= "Please describe the image in under 140 characters"
       
+      %label{:for => "description"}= "Please describe the image in under 140 characters"
       %textarea{:name => "description"}
       
       %input{:type => "submit", :value => "Submit"}

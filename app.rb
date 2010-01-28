@@ -44,31 +44,7 @@ module Voter
       @title = "Voter | Upload an image."
       haml :upload
     end
-    
-    post '/vote/:id/up' do
-      Vote.create(
-        :value    => 1,
-        :image_id => params[:id]
-      )
-      if update_votes_total(params[:id])
-        return "true"
-      else
-        return "false"
-      end
-    end
-
-    post '/vote/:id/down' do
-      Vote.create(
-        :value    => -1,
-        :image_id => params[:id]
-      )
-      if update_votes_total(params[:id])
-        return "true"
-      else
-        return "false"
-      end
-    end
-    
+        
     post '/mustachify' do
       @image = mustachify(params[:file])
       
@@ -87,11 +63,11 @@ module Voter
       
       puts  Image.new(
         :title => params[:title],
-        :description => params[:title],
+        :description => params[:description],
         :vote_total => 0,
         :url => "http://s3.amazonaws.com/#{@bucket}/#{@stored_name}"
       ).save
-      AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket)
+      AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket, :access => :public_read)
       
       redirect "/"
     end    

@@ -11,12 +11,12 @@ body
 
 
 h1 a
-  :color #fff
-  :font-size 120px
-  :margin-top 0px
-  :margin-bottom 0
-  :text-decoration none !important
-
+  :text-indent -9999px 
+  :background url(images/header.png) top left no-repeat
+  :width 565px
+  :height 100px
+  :display block
+  :margin-bottom 25px
 
 label
   :display block
@@ -30,7 +30,7 @@ fieldset
 #nav
   :float right
   :list-style none
-  :margin-top -65px
+  :margin-top 0
 
 
 a
@@ -53,50 +53,28 @@ a
     :margin-top 9px
     :width 400px
 
-
-div.vote
+.descriptionWrapper
+  :font-family georgia, serif
   :float left
   :width 161px
   :background url(images/hinge.png) top right no-repeat
-  :height 290px
+  :height 291px
 
-
-ul.vote
-  :list-style none
-  :padding 0
-  :margin 0
-
-
-li
-  &.up, &.down
-    :width 75px
-    :height 32px
-    :text-indent -9999px
-    :float left
-
-  &.up
-    :background url(images/voteBtns.png) top left no-repeat
-
-    &.active
-      :background-position bottom left
-
-  &.down
-    :background url(images/voteBtns.png) top right no-repeat
-
-    &.active
-      :background-position bottom right
-
-
-ul.vote li:hover
-  :opacity 0.8
-
-
-.vote
-  :font-family georgia
+.description
+  :float left
+  :font-size 12px
+  :width 120px
+  :font-style italic
+  :background #ebebeb
+  :padding 0 15px 15px
+  :color #868686
+  :height 261px
+  :border-bottom 1px solid #ccc
 
 
 h3
   :float left
+  :width 125px
 
   &.title a
     :color #333
@@ -107,16 +85,6 @@ h3
       :color #000
 
 
-.description
-  :float left
-  :font-size 12px
-  :width 120px
-  :font-style italic
-  :background #ebebeb
-  :padding 0 15px 15px
-  :color #868686
-  :height 231px
-  :border-bottom 1px solid #ccc
 
   p
     :float left
@@ -127,3 +95,5 @@ h3
   :clear both
   :color #444
   :text-shadow #1b1b1b 1px -1px 2px
+  a
+    :color #555
