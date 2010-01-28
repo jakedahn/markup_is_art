@@ -3,8 +3,8 @@ require 'active_record'
 require 'haml'
 require 'sass'
 require 'aws/s3'
-require 'lib/rcomposite'
 require 'restclient'
+require 'RMagick'
 
 load 'config/config.rb'
 load 'models.rb'
@@ -69,7 +69,7 @@ module Voter
         @filetype = File.extname(@filename)
         @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
       
-        puts  Image.new(
+        Image.new(
           :title => params[:title],
           :description => params[:description],
           :url => "http://#{@bucket}/#{@stored_name}"

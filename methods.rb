@@ -30,17 +30,13 @@ def mustachify(img)
   @filename = img[:filename]
   @filetype = File.extname(@filename)
   @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
-  
-  @manipulated = RComposite::Canvas.new(640, 480) do
-    layer :file => 'public/images/mustaches/1.png' do
-      offset 176, 171
-    end
-    layer :file => open(img[:tempfile]) do
-      image.resize!(640, 480)
-    end
-  end
-  @manipulated.save_as "./tmp/"+@stored_name
-  
+    
+  dst = Magick::Image.read(open(img[:tempfile])) {self.size = "640x480"}.first
+  src = Magick::Image.read('public/images/mustaches/1.png') {self.size = "284x140"}.first
+
+  result = dst.composite(src, Magick::CenterGravity, Magick::OverCompositeOp)
+  result.write("./tmp/"+@stored_name)
+    
   return "./tmp/"+@stored_name
   
 end
