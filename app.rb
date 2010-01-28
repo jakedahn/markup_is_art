@@ -11,7 +11,7 @@ load 'models.rb'
 load 'methods.rb'
 
 module Voter
-  class App < Sinatra::Default
+  class App < Sinatra::Default 
     
     set :sessions, true
     set :run, false
