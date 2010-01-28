@@ -73,8 +73,9 @@ module Voter
           :title => params[:title],
           :description => params[:description],
           :vote_total => 0,
-          :url => "http://images.mustache.me/#{@bucket}/#{@stored_name}"
+          :url => "http://#{@bucket}/#{@stored_name}"
         ).save
+        
         AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket, :access => :public_read)
       
         redirect "/"

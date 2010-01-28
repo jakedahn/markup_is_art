@@ -63,9 +63,9 @@ def mustachify(img)
       image.resize!(640, 480)
     end
   end
-  @manipulated.save_as "public/images/tmp/"+@stored_name
+  @manipulated.save_as "./tmp/"+@stored_name
   
-  return "public/images/tmp/"+@stored_name
+  return "./tmp/"+@stored_name
   
 end
 
