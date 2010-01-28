@@ -72,7 +72,6 @@ module Voter
         puts  Image.new(
           :title => params[:title],
           :description => params[:description],
-          :vote_total => 0,
           :url => "http://#{@bucket}/#{@stored_name}"
         ).save
         
