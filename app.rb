@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'active_record'
+require 'haml'
 require 'sass'
 require 'aws/s3'
 require 'rcomposite'
@@ -25,24 +26,23 @@ module Voter
     end
 
     get '/' do
-      @title = "Voter | Upload your images for critique"
-      @images = Image.all()
+      @title = "Mustache.me"
+      @images = Image.all(:order => "id DESC")
       
       haml :index
     end
-    
-    get '/top' do
-      @images = Image.all(:limit => 5).sort { |a,b| b.vote_total <=> a.vote_total }
-      haml :index
-    end
 
-    get '/images' do
-      haml :images
+    get '/about' do
+      @title = "Mustache.me | About Team Jake Dahn"
+      
+      haml :about
     end
-
-    get '/upload' do
-      @title = "Voter | Upload an image."
-      haml :upload
+        
+    get '/view/:id' do
+      @image = Image.find(params[:id])
+      @title = "Mustache.me | #{@image.title}"
+      @bodyClass = "single"
+      haml :view
     end
         
     post '/mustachify' do
@@ -51,25 +51,34 @@ module Voter
       RestClient.post 'http://looce.com:4568/upload', :file => File.new(@image)
     end
     
+    get '/upload' do
+      @title = "Mustache.me | Grow a 'stache."
+      @bodyClass = "upload"
+      haml :upload
+    end
+    
     post '/upload' do
       
-      @bucket = "voter"
-      @file = params[:file]
-      @filename = @file[:filename]
-      @filetype = File.extname(@filename)
-      @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
+      if params[:file].nil?
+        set_flash "Try actually filling in the form this time..."
+        redirect "/upload"
+      else
+        @bucket = "images.mustache.me"
+        @file = params[:file]
+        @filename = @file[:filename]
+        @filetype = File.extname(@filename)
+        @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
       
+        puts  Image.new(
+          :title => params[:title],
+          :description => params[:description],
+          :vote_total => 0,
+          :url => "http://images.mustache.me/#{@bucket}/#{@stored_name}"
+        ).save
+        AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket, :access => :public_read)
       
-      
-      puts  Image.new(
-        :title => params[:title],
-        :description => params[:description],
-        :vote_total => 0,
-        :url => "http://s3.amazonaws.com/#{@bucket}/#{@stored_name}"
-      ).save
-      AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket, :access => :public_read)
-      
-      redirect "/"
+        redirect "/"
+      end
     end    
     
   end

@@ -1,14 +1,14 @@
 #upload
   %form{:id => "uploadForm", :method => "post", :action => "/upload", :enctype => "multipart/form-data"}
     %fieldset
-      %label{:for => "tile"}= "Please select a file"
-      %input{:name => "file", :type => "file"}
+      %label{:for => "tile"}= "Select a file to 'stashify"
+      %input{:name => "file", :type => "file", :class => "required"}
       
-      %label{:for => "title"}= "Please enter a title"
-      %input{:name => "title", :type => "text"}
+      %label{:for => "title"}= "Enter the victim's name"
+      %input{:name => "title", :type => "text", :class => "required"}
       
-      %label{:for => "description"}= "Please describe the image in under 140 characters"
-      %textarea{:name => "description"}
+      %label{:for => "description"}= "Ramble on for 140 characters or something..."
+      %textarea{:name => "description", :maxlength => "140"}
       
-      %input{:type => "submit", :value => "Submit"}
+      %input{:type => "submit", :value => "Mustachify!"}
     

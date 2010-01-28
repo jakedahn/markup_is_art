@@ -1,4 +1,4 @@
-!!! strict
+="<!DOCTYPE html>"
 %html
   %head
     %meta{:"http-equiv"=>"Content-Type", :content => "text/html; charset=utf-8" }
@@ -7,19 +7,33 @@
     
     %link{:rel=>"stylesheet", :href=>"/style.css", :media=>"screen"}
     
-    %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js"}
-    %script{:type => "text/javascript", :src => "/js/raphael-1.3.1.js"}
+    %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"}
+    %script{:type => "text/javascript", :src => "/js/jquery.validate.min.js"}
     %script{:type => "text/javascript", :src => "/js/application.js"}
     
-  %body
-    %div#wrapper        
+  %body{:class => @bodyClass}
+    %div#wrapper
       %div#content
         %h1
           %a{:href => "/"}= "Mustache.me"
-        %ul#nav
-          %li
-            %a{:href => "/upload"}= "Upload"
+        %span#uploadLink
+          %a{:href => "/upload", :id => "upload"}= "Upload"
         = @flash
         = yield
       %div#footer
-        Made in collaboration with <a href="http://blog.jakedahn.com">Jake Dahn</a> / <a href="http://johnheimkes.com">John Heimkes</a> / <a href="http://blog.jakedahn.com">Dane Messall</a> 
+        %p
+          Made in collaboration with <a href="#">Team Jake Dahn</a>
+      <script type="text/javascript">
+      //<![CDATA[
+      (function() {
+      var links = document.getElementsByTagName('a');
+      var query = '?';
+      for(var i = 0; i < links.length; i++) {
+      if(links[i].href.indexOf('#disqus_thread') >= 0) {
+      query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+      }
+      }
+      document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/mustacheme/get_num_replies.js' + query + '"></' + 'script>');
+      })();
+      //]]>
+      </script>

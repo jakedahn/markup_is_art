@@ -2,6 +2,7 @@ body
   :font-family helvetica, arial, verdana, sans-serif
   :background #333
   :margin 0
+  :outline 0
 
 
 #wrapper
@@ -18,20 +19,19 @@ h1 a
   :display block
   :margin-bottom 25px
 
-label
-  :display block
-  :margin-top 20px
-
-
-fieldset
-  :border none
-
-
-#nav
-  :float right
-  :list-style none
-  :margin-top 0
-
+span#uploadLink
+  :background url(images/smallHinge.png) top right no-repeat
+  :top 179px
+  :right 0
+  :position fixed
+  :height 50px
+  
+  a
+    :background #E6E6E6
+    :display block
+    :color #666
+    :margin-right 11px
+    :padding 11px 15px 10px 15px
 
 a
   :color #fff
@@ -41,6 +41,8 @@ a
   &:hover
     :color #e4e5e4
     :text-decoration underline
+  img 
+    :border none !important
 
 
 .image
@@ -58,20 +60,29 @@ a
   :float left
   :width 161px
   :background url(images/hinge.png) top right no-repeat
-  :height 291px
+  :height 290px
 
-.description
-  :float left
-  :font-size 12px
-  :width 120px
-  :font-style italic
-  :background #ebebeb
-  :padding 0 15px 15px
-  :color #868686
-  :height 261px
-  :border-bottom 1px solid #ccc
+  .description
+    :float left
+    :font-size 12px
+    :width 120px
+    :font-style italic
+    :background #ebebeb
+    :padding 0 15px 15px
+    :color #868686
+    :height 233px
+    :border-bottom 1px solid #ccc
 
-
+  .tweetThis
+    :background #D5E9F3
+    :display block
+    :float left
+    :width 130px
+    :color #1C60AC
+    :font-family "Helvetica Neue", Helvetica, Arial, sans-serif
+    :padding 5px 10px
+    :text-align center
+    
 h3
   :float left
   :width 125px
@@ -95,5 +106,68 @@ h3
   :clear both
   :color #444
   :text-shadow #1b1b1b 1px -1px 2px
+  :text-align center
+  :padding-top 50px
   a
     :color #555
+    
+#disqus_thread
+  :color #e1e1e1
+  :margin-top 20px
+
+label
+  :display block
+  :margin-top 20px
+  :color #fff
+  :font-weight bold
+  :margin-bottom 10px
+
+input, textarea, #uploadForm
+  :width 335px
+textarea
+  :height 150px
+input[type=file]
+  :color #fff
+  :font-style italic
+input[type=submit]
+  :width 100px
+  :float right
+fieldset
+  :border none
+
+label.error
+  :color #fe2500
+  :font-size 12px
+  :float right
+  :margin-top -50px
+
+label[for=description].error
+  :margin-top 15px
+
+.flash
+  :color red
+  :font-weight bold
+  :font-size 24px
+
+#about 
+  :color #fff
+
+  ul 
+    :margin 0
+    li  
+      :margin-top 5px
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
