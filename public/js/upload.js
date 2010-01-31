@@ -14,9 +14,13 @@ $(document).ready(function(){
     var resizeOptions = {
       url: "/up",
       success: function(res){
-        res = JSON.parse(res)
+        full_res = res;
+        temp_image = JSON.parse(res).url;
         
-        $("#adjustment").css("background", "url("+res.url+")").attr("alt", res);
+        console.log(full_res);
+        console.log(temp_image);
+
+        $("#adjustment").css("background", "url("+temp_image+")").attr("alt", full_res);
         $("#adjustment").show();
       } 
     };
