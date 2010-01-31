@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'sinatra'
+
 set :environment, :production
 set :port, 50000
 disable :run, :reload
