@@ -37,12 +37,21 @@ module Voter
     end
         
     get '/view/:id' do
-      @image = Image.find(params[:id])
-      @title = "Mustache.me | #{@image.title}"
-      @bodyClass = "single"
-      haml :view
+      @image = Image.find_by_id(params[:id])
+      puts @image
+      if @image.nil?
+        redirect '/random'
+      else
+        @title = "Mustache.me | #{@image.title}"
+        @bodyClass = "single"
+        haml :view
+      end
     end
     
+    get '/random' do
+      random_post = Image.find(:first, :order => "random()")
+      redirect "/view/#{random_post.id}"
+    end
     get '/upload' do
       @title = "Mustache.me | Grow a 'stache."
       @bodyClass = "upload"
