@@ -48,7 +48,7 @@ module Voter
     post '/mustachify' do
       @image = mustachify(params[:file])
       
-      RestClient.post 'http://looce.com:4568/upload', :file => File.new(@image)
+      RestClient.post 'http://mustacheme.heroku.com/upload', :file => File.new(@image)
     end
     
     get '/upload' do
@@ -77,7 +77,7 @@ module Voter
       
       stache.save
       
-      return "http://looce.com:4567/view/#{stache.id}"
+      return "http://mustacheme.heroku.com/view/#{stache.id}"
     end    
     
   end
