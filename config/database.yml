@@ -1,5 +1,14 @@
+# production:
+#   adapter: sqlite3
+#   database: db/app.sqlite3
+#   pool: 5
+#   timeout: 5000
+
 production:
-  adapter: sqlite3
-  database: db/app.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: mustacheme
+  username: root
+  password: batsoup2211551090206259131
+  socket: /var/run/mysqld/mysqld.sock
