@@ -45,7 +45,7 @@ def setup_image(img, params)
   image.write("./public/tmp/"+@stored_name)
   
   
-  return "{ url: 'http://mustache.me/tmp/#{@stored_name}', local_file: './public/tmp/#{@stored_name}', title: \"#{h(params[:title])}\", description: \"#{h(params[:description])}\", filename: '#{@stored_name}'}"
+  return "{ \"url\": \"http://mustache.me/tmp/#{@stored_name}\", \"local_file\": \"./public/tmp/#{@stored_name}\", \"title\": \"#{h(params[:title])}\", \"description\": \"#{h(params[:description])}\", \"filename\": \"#{@stored_name}\"}"
 end
 
 

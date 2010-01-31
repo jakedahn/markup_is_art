@@ -14,7 +14,9 @@ $(document).ready(function(){
     var resizeOptions = {
       url: "/up",
       success: function(res){
-        $("#adjustment").css("background", "url("+JSON.parse(res).url+")").attr("alt", res);
+        res = JSON.parse(res)
+        
+        $("#adjustment").css("background", "url("+res.url+")").attr("alt", res);
         $("#adjustment").show();
       } 
     };
