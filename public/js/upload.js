@@ -16,9 +16,6 @@ $(document).ready(function(){
       success: function(res){
         full_res = res;
         temp_image = JSON.parse(res).url;
-        
-        console.log(full_res);
-        console.log(temp_image);
 
         $("#adjustment").css("background", "url("+temp_image+")").attr("alt", full_res);
         $("#adjustment").show();
