@@ -70,7 +70,7 @@ module Voter
       
       stache.save
       
-      return "http://173.203.201.126:4567/view/#{stache.id}"
+      return "http://mustache.me/view/#{stache.id}"
     end    
     
   end
