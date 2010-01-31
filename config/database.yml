@@ -10,5 +10,5 @@ production:
   reconnect: false
   database: mustacheme
   username: root
-  password: batsoup2211551090206259131
+  password: batsoup22155109
   socket: /var/run/mysqld/mysqld.sock
