@@ -13,3 +13,10 @@
       %a{:href => "/view/#{image.id}"}
         %img{:src => "#{image.url}", :height => 276}
 
+- if @offset == @image_count.to_i-5
+  %a{:class => "prev", :href => @page_num.to_i-1}= "&laquo; Previous"
+- elsif @page_num.to_i < 1
+  %a{:class => "next", :href => "/page/#{@page_num.to_i+1}"}= "Next &raquo;"
+- else 
+  %a{:class => "prev", :href => @page_num.to_i-1}= "&laquo; Previous"
+  %a{:class => "next", :href => @page_num.to_i+1}= "Next &raquo;"

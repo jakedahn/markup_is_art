@@ -25,11 +25,30 @@ module Voter
 
     get '/' do
       @title = "Mustache.me"
-      @images = Image.all(:order => "id DESC")
+
+      @image_count = Image.all.size
+      @offset = params[:page].to_i*5
+      @page_num = params[:page].to_i
+
+      @images = Image.all(:limit => 5, :order => 'created_at DESC', :offset => @offset)
       
       haml :index
     end
 
+    get '/page/:page' do
+      @title = "Mustache.me"
+
+      @image_count = Image.all.size
+      @offset = params[:page].to_i*5
+      @page_num = params[:page].to_i
+
+      @images = Image.all(:limit => 5, :order => 'created_at DESC', :offset => @offset)
+      if params[:page].to_i == 0
+        redirect "/"
+      end
+      haml :index
+    end
+      
     get '/about' do
       @title = "Mustache.me | About Team Jake Dahn"
       
