@@ -3,7 +3,7 @@ chdir: /var/www/ruby/mustache.me/current/
 address: 0.0.0.0
 user: jakedahn
 group: jakedahn
-port: 52433
+port: 50000
 pid: /var/www/ruby/mustache.me/shared/pids/thin.pid
 rackup: /var/www/ruby/mustache.me/current/config.ru
 log: /var/www/ruby/mustache.me/current/log/thin.log
