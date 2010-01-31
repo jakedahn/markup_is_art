@@ -3,7 +3,6 @@ require 'active_record'
 require 'haml'
 require 'sass'
 require 'aws/s3'
-require 'restclient'
 require 'RMagick'
 
 load 'config/config.rb'
@@ -43,12 +42,6 @@ module Voter
       @title = "Mustache.me | #{@image.title}"
       @bodyClass = "single"
       haml :view
-    end
-        
-    post '/mustachify' do
-      @image = mustachify(params[:file])
-      
-      RestClient.post 'http://mustache.me:4567/upload', :file => File.new(@image)
     end
     
     get '/upload' do
