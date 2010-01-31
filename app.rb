@@ -49,7 +49,7 @@ module Voter
     end
     
     get '/random' do
-      random_post = Image.find(:first, :order => "random()")
+      random_post = Image.find(:first, :order => "RAND()")
       redirect "/view/#{random_post.id}"
     end
     get '/upload' do
