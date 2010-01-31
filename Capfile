@@ -18,7 +18,6 @@ set :admin_runner, user
 
 namespace :deploy do
   task :start, :roles => [:web, :app] do
-    run "sudo killall thin"
     run "cd #{deploy_to}/current && nohup thin -C config/production_config.yml -R config.ru start"
   end
  
