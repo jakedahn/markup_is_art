@@ -1,8 +1,8 @@
 environment: production
 chdir: /var/www/ruby/mustache.me/current/
 address: 127.0.0.1
-user: jakedahn
-group: jakedahn
+user: www-data
+group: www-data
 port: 8000
 pid: /var/www/ruby/mustache.me/shared/pids/thin.pid
 rackup: /var/www/ruby/mustache.me/current/config.ru
