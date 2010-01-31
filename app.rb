@@ -57,28 +57,27 @@ module Voter
       haml :upload
     end
     
+    post '/up' do
+      setup_image(params[:file], params)
+    end
+    
     post '/upload' do
+      aws = AWS::S3::S3Object.store(
+        params[:filename], 
+        File.new(mustachify(params[:local_file], params[:position][:x], params[:position][:y])),
+        "images.mustache.me",
+        :access => :public_read
+      )
+
+      stache = Image.new(
+        :title => params[:title],
+        :description => params[:description],
+        :url => "http://images.mustache.me/#{params[:filename]}"
+      )
       
-      if params[:file].nil?
-        set_flash "Try actually filling in the form this time..."
-        redirect "/upload"
-      else
-        @bucket = "images.mustache.me"
-        @file = params[:file]
-        @filename = @file[:filename]
-        @filetype = File.extname(@filename)
-        @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
+      stache.save
       
-        Image.new(
-          :title => params[:title],
-          :description => params[:description],
-          :url => "http://#{@bucket}/#{@stored_name}"
-        ).save
-        
-        AWS::S3::S3Object.store(@stored_name, File.new(mustachify(params[:file])), @bucket, :access => :public_read)
-      
-        redirect "/"
-      end
+      return "http://looce.com:4567/view/#{stache.id}"
     end    
     
   end

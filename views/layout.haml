@@ -5,18 +5,22 @@
     %title= @title
     %meta{:name=>"Robots", :content=>"index,all"}
     %link{:rel=>"stylesheet", :href=>"/style.css", :media=>"screen"}
-    
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"}
-    %script{:type => "text/javascript", :src => "/js/jquery.validate.min.js"}
-    %script{:type => "text/javascript", :src => "/js/application.js"}
+    
+    - if @bodyClass == "upload"
+      %script{:type => "text/javascript", :src => "/js/jquery-ui-1.8rc1.custom.min.js"}
+      %script{:type => "text/javascript", :src => "/js/jquery.validate.min.js"}
+      %script{:type => "text/javascript", :src => "/js/jquery.form.min.js"}
+      %script{:type => "text/javascript", :src => "/js/upload.js"}
     
   %body{:class => @bodyClass}
     %div#wrapper
       %div#content
         %h1
           %a{:href => "/"}= "Mustache.me"
-        %span#uploadLink
-          %a{:href => "/upload", :id => "upload"}= "Upload"
+        - if @bodyClass != "upload"
+          %span#uploadLink
+            %a{:href => "/upload", :id => "upload"}= "Upload"
         = @flash
         = yield
       %div#footer

@@ -24,22 +24,30 @@ def partial(template, *args)
   end
 end
 
-def mustachify(img)
+def mustachify(location, x, y)
+  dst = Magick::Image.read(open(location)) {self.size = "640x480"}.first
+  src = Magick::Image.read('public/images/mustaches/1.png') {self.size = "283x90"}.first
 
+  result = dst.composite(src, x.to_i, y.to_i, Magick::OverCompositeOp)
+  result.write(location)
+    
+  return location
+  
+end
+
+def setup_image(img, params)
   @file = img
   @filename = img[:filename]
   @filetype = File.extname(@filename)
   @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
-    
-  dst = Magick::Image.read(open(img[:tempfile])) {self.size = "640x480"}.first
-  src = Magick::Image.read('public/images/mustaches/1.png') {self.size = "284x140"}.first
-
-  result = dst.composite(src, Magick::CenterGravity, Magick::OverCompositeOp)
-  result.write("./tmp/"+@stored_name)
-    
-  return "./tmp/"+@stored_name
   
+  image = Magick::Image.read(open(img[:tempfile])) {self.size ="640x480"}.first
+  image.write("./public/tmp/"+@stored_name)
+  
+  
+  return "{ url: 'http://looce.com:4567/tmp/#{@stored_name}', local_file: './public/tmp/#{@stored_name}', title: '#{params[:title]}', description: '#{params[:description]}', filename: '#{@stored_name}'}"
 end
+
 
 def h(text)
   Rack::Utils.escape_html(text)

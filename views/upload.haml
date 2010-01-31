@@ -1,5 +1,9 @@
 #upload
-  %form{:id => "uploadForm", :method => "post", :action => "/upload", :enctype => "multipart/form-data"}
+  #adjustment
+    #mustache
+    %a#save= "Save"
+    
+  %form{:id => "uploadForm", :method => "post", :action => "/up", :enctype => "multipart/form-data"}
     %fieldset
       %label{:for => "tile"}= "Select a file to 'stashify"
       %input{:name => "file", :type => "file", :class => "required"}
