@@ -13,8 +13,6 @@ module Voter
   class App < Sinatra::Default 
     
     set :sessions, true
-    set :run, false
-    disable :reload
     
     before do
       @flash = get_flash.nil? ? "" : "<span class='flash'>#{get_flash}</span>"
