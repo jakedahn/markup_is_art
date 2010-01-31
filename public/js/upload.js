@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $("#adjustment").hide();
   $("a#save").hide();
-    // $("#uploadForm").validate();
+  $("#uploadForm").validate();
     
     $("#mustache").draggable({
       opacity: 0.65,
