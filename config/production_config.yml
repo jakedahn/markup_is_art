@@ -3,7 +3,7 @@ chdir: /var/www/ruby/mustache.me/current/
 address: 127.0.0.1
 user: www-data
 group: www-data
-port: 8000
+port: 3500
 pid: /var/www/ruby/mustache.me/shared/pids/thin.pid
 rackup: /var/www/ruby/mustache.me/current/config.ru
 log: /var/www/ruby/mustache.me/current/log/thin.log
