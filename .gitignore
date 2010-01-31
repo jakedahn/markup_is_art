@@ -1,2 +1,4 @@
 public/images/tmp
-tmp/
+tmp/*.jpg
+tmp/*.png
+tmp/*.gif
