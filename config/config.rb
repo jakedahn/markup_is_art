@@ -1,6 +1,6 @@
 dbconfig = YAML.load(File.read('config/database.yml'))
-ActiveRecord::Base.establish_connection dbconfig["development"]
-# ActiveRecord::Base.establish_connection dbconfig["production"]
+# ActiveRecord::Base.establish_connection dbconfig["development"]
+ActiveRecord::Base.establish_connection dbconfig["production"]
 
 # Replace this section with your s3 info
 AWS::S3::Base.establish_connection!(
