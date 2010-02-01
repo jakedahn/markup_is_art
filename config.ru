@@ -5,7 +5,7 @@ set :environment, :production
 set :port, 50000
 disable :run, :reload
 
-log = File.new("../shared/log/sinatraError.log", "a")
+log = File.new("sinatraError.log", "a")
 STDOUT.reopen(log)
 STDERR.reopen(log)
 
