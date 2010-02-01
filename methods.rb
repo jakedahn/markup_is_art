@@ -42,7 +42,8 @@ def setup_image(img, params)
   @stored_name = Digest::SHA1.hexdigest(@file[:filename]+Time.now.to_s+@filename)+@filetype
   
   image = Magick::Image.read(open(img[:tempfile])) {self.size ="640x480"}.first
-  image.write("./public/tmp/"+@stored_name)
+  resized = image.resize_to_fill(640,480)
+  resized.write("./public/tmp/"+@stored_name)
   
   
   return "{ \"url\": \"http://mustache.me/tmp/#{@stored_name}\", \"local_file\": \"./public/tmp/#{@stored_name}\", \"title\": \"#{params[:title]}\", \"description\": \"#{params[:description]}\", \"filename\": \"#{@stored_name}\"}"
