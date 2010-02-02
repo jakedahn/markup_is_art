@@ -6,7 +6,7 @@
           %a{:href => "/view/#{@image.id}"}= h(@image.title)
       
         %p= h(@image.description)
-      %a.tweetThis{:href => "http://twitter.com?status=#{CGI::escape(@image.title+" with a mustache! http://mustache.me/view/"+@image.id.to_s +" #mustache")}", :target => "_blank"}= "Tweet this."
+      %a.tweetThis{:href => "http://twitter.com?status=#{CGI::escape(@image.title+" with a mustache! http://mustache.me/view/"+@image.id.to_s+" #mustache")}", :target => "_blank"}= "Tweet this."
     
     %a{:href => "/view/#{@image.id}"}
       %img{:src => "#{@image.url}", :height => 276}
