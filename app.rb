@@ -27,10 +27,10 @@ module Voter
       @title = "Mustache.me"
 
       @image_count = Image.all.size
-      @offset = params[:page].to_i*5
+      @offset = params[:page].to_i*10
       @page_num = params[:page].to_i
 
-      @images = Image.all(:limit => 5, :order => 'created_at DESC', :offset => @offset)
+      @images = Image.all(:limit => 10, :order => 'created_at DESC', :offset => @offset)
       
       haml :index
     end
@@ -39,10 +39,10 @@ module Voter
       @title = "Mustache.me"
 
       @image_count = Image.all.size
-      @offset = params[:page].to_i*5
+      @offset = params[:page].to_i*10
       @page_num = params[:page].to_i
 
-      @images = Image.all(:limit => 5, :order => 'created_at DESC', :offset => @offset)
+      @images = Image.all(:limit => 10, :order => 'created_at DESC', :offset => @offset)
       if params[:page].to_i == 0
         redirect "/"
       end
