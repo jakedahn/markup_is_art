@@ -35,11 +35,11 @@ a:hover {
 #profiles {
 	float: left;
 	margin-left: 480px;
+	padding-bottom: 50px;
 }
 
 #footer {
 	background: url(images/arrows.png) bottom center repeat-x;
 	height: 293px;
-	margin-top: 50px;
 	clear: both;
 }
