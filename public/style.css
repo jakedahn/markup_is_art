@@ -5,14 +5,9 @@
 
 body {
 	background: #9fbbc8 url(images/background.png) top left no-repeat;
-	margin: 0 !important;
-	padding: 0 !important;
+  margin: 0;
 	font: 14px "Raleway Thin";
 	color: #000;
-}
-
-#wrapper {
-	margin: 0;
 }
 
 h1 {
@@ -24,10 +19,8 @@ h1 {
 }
 
 h2 {
-	font-family: Raleway;
 	font-size: 36px;
 	color: #f2f1df;
-	font-family: 'Raleway Thin';
 	margin-bottom: 0;
 }
 
@@ -41,7 +34,7 @@ a:hover {
 }
 #profiles {
 	float: left;
-	margin-left: 481px;
+	margin-left: 480px;
 }
 
 #footer {
