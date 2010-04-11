@@ -5,13 +5,13 @@ set :user, "jakedahn"
 set :use_sudo, false
 
 set :scm, :git
-set :repository,  "git@github.com:jakedahn/mustachio.git"
+set :repository,  "git@github.com:jakedahn/markup_is_art.git"
 set :deploy_via, :remote_cache
 set :deploy_to, "/var/www/ruby/#{application}"
 
-role :app, "mustache.me"
-role :web, "mustache.me"
-role :db,  "mustache.me", :primary => true
+role :app, "markupisart.com"
+role :web, "markupisart.com"
+role :db,  "markupisart.com", :primary => true
 
 set :runner, user
 set :admin_runner, user
@@ -36,7 +36,7 @@ namespace :deploy do
   end
 end
 
-namespace :mustacheme do
+namespace :markupisart do
   task :log do
     run "cat #{deploy_to}/current/log/thin.log"
   end

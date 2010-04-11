@@ -1,51 +1,17 @@
-="<!DOCTYPE html>"
-%html
+!!!
+%html{ "xml:lang" => "en", :lang => "en" }
   %head
-    %meta{:"http-equiv"=>"Content-Type", :content => "text/html; charset=utf-8" }
-    %title= @title
-    %meta{:name=>"Robots", :content=>"index,all"}
-    %link{:rel=>"stylesheet", :href=>"/style.css", :media=>"screen"}
-    %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"}
-    
-    - if @bodyClass == "upload"
-      %script{:type => "text/javascript", :src => "/js/jquery-ui-1.8rc1.custom.min.js"}
-      %script{:type => "text/javascript", :src => "/js/jquery.validate.min.js"}
-      %script{:type => "text/javascript", :src => "/js/jquery.form.min.js"}
-      %script{:type => "text/javascript", :src => "/js/upload.js"}
-    
-  %body{:class => @bodyClass}
-    %div#wrapper
-      %div#content
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
+    %title
+      MarkupIsArt
+    %meta{ :name => "Robots", :content => "index,all" }
+    %meta{ :name => "Description", :content => "Markup Is Art" }
+    %link{ :href => "/style.css", :rel => "stylesheet", :type => "text/css", :media => "screen" }
+  %body
+    #wrapper
+      #header
         %h1
-          %a{:href => "/"}= "Mustache.me"
-        - if @bodyClass != "upload"
-          %span#uploadLink
-            %a{:href => "/upload", :id => "upload"}= "Upload"
-        = @flash
+          Markup Is Art.
+      #profiles
         = yield
-      %div#footer
-        %p
-          Made in collaboration with <a href="/about">Uninteractive.</a>
-      <script type="text/javascript">
-      //<![CDATA[
-      (function() {
-      var links = document.getElementsByTagName('a');
-      var query = '?';
-      for(var i = 0; i < links.length; i++) {
-      if(links[i].href.indexOf('#disqus_thread') >= 0) {
-      query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
-      }
-      }
-      document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/mustacheme/get_num_replies.js' + query + '"></' + 'script>');
-      })();
-      //]]>
-      </script>
-      <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-      </script>
-      <script type="text/javascript">
-      try {
-      var pageTracker = _gat._getTracker("UA-11907887-4");
-      pageTracker._trackPageview();
-      } catch(err) {}</script>
+      #footer

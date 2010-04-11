@@ -1,21 +1,26 @@
-%div#images
-  - @images.each do |image|
-    %div.image
-      .descriptionWrapper
-        .description
-          %h3.title
-            %a{:href => "/view/#{image.id}"}= h(image.title)
-          %p= h(image.description)
-        %a.tweetThis{:href => "http://twitter.com?status=#{CGI::escape(image.title+" with a mustache! http://mustache.me/view/"+image.id.to_s+" #mustache")}", :target => "_blank"}= "Tweet this."
-
-
-      %a{:href => "/view/#{image.id}"}
-        %img{:src => "#{image.url}", :height => 276}
-
-- if @offset >= @image_count.to_i-5
-  %a{:class => "prev", :href => @page_num.to_i-1}= "&laquo; Previous"
-- elsif @page_num.to_i < 1
-  %a{:class => "next", :href => "/page/#{@page_num.to_i+1}"}= "Next &raquo;"
-- else 
-  %a{:class => "prev", :href => @page_num.to_i-1}= "&laquo; Previous"
-  %a{:class => "next", :href => @page_num.to_i+1}= "Next &raquo;"
+.profile
+  %h2
+    Dane Messall
+  %p
+    The Designer. Bike commuter, and french press aficionado
+  %span.link
+    %a{ :href => "http://www.twitter.com/dane_ray" }
+      @dane_ray
+      
+.profile
+  %h2
+    Jake Dahn
+  %p
+    The Hacker. Obsessed with clean code, and hopes one day to have a mustache.
+  %span.link
+    %a{ :href => "http://www.twitter.com/jakedahn" }
+      @jakedahn
+      
+.profile
+  %h2
+    John Heimkes IV
+  %p
+    Interface Programmer. Wrangling design and code together in one pretty package.
+  %span.link
+    %a{ :href => "http://www.twitter.com/johnheimkes" }
+      @johnheimkes
