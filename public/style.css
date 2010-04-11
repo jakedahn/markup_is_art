@@ -40,5 +40,6 @@ a:hover {
 #footer {
 	background: url(images/arrows.png) bottom center repeat-x;
 	height: 293px;
+	margin-top: 50px;
 	clear: both;
 }
