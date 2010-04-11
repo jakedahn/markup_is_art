@@ -1,0 +1,51 @@
+@font-face {
+	font-family: 'Raleway Thin';
+	src: url('raleway_thin.ttf');
+}
+
+body {
+	background: #9fbbc8 url(images/background.png) top left no-repeat;
+	margin: 0 !important;
+	padding: 0 !important;
+	font: 14px "Raleway Thin";
+	color: #000;
+}
+
+#wrapper {
+	margin: 0;
+}
+
+h1 {
+	background: url(images/logo.png) top left no-repeat;
+	width: 789px;
+	height: 295px;
+	text-indent: -9999px;
+	margin: 0;
+}
+
+h2 {
+	font-family: Raleway;
+	font-size: 36px;
+	color: #f2f1df;
+	font-family: 'Raleway Thin';
+	margin-bottom: 0;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ff4800;
+}
+#profiles {
+	float: left;
+	margin-left: 481px;
+}
+
+#footer {
+	background: url(images/arrows.png) bottom center repeat-x;
+	height: 293px;
+	clear: both;
+}
